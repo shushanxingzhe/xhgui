@@ -26,8 +26,6 @@ XHGui has the following requirements:
  * [MongoDB Extension](http://pecl.php.net/package/mongo) MongoDB PHP driver.
    XHGui requires verison 1.3.0 or later.
  * [MongoDB](http://www.mongodb.org/) MongoDB Itself. XHGui requires version 2.2.0 or later.
- * [mcrypt](http://php.net/manual/en/book.mcrypt.php) PHP must be configured
-   with mcrypt (which is a dependency of Slim).
  * [dom](http://php.net/manual/en/book.dom.php) If you are running the tests
    you'll need the DOM extension (which is a dependency of PHPUnit).
 
@@ -44,7 +42,7 @@ Installation
 
    The following command changes the permissions for the `cache` directory:
 
-   ```
+   ```bash
    chmod -R 0777 cache
    ```
 
@@ -78,7 +76,7 @@ Installation
 7. Run XHGui's install script. The install script downloads composer and
    uses it to install the XHGui's dependencies.
 
-   ```
+   ```bash
    cd path/to/xhgui
    php install.php
    ```
@@ -99,7 +97,7 @@ For Apache, you can do the following to enable URL rewriting:
    has the directive FileInfo set for the correct DocumentRoot.
 
     Example configuration for Apache 2.4:
-    ```
+    ```apache
     <Directory /var/www/xhgui/>
         Options Indexes FollowSymLinks
         AllowOverride FileInfo
@@ -109,7 +107,7 @@ For Apache, you can do the following to enable URL rewriting:
 2. Make sure you are loading up mod_rewrite correctly.
    You should see something like:
 
-    ```
+    ```apache
     LoadModule rewrite_module libexec/apache2/mod_rewrite.so
     ```
 
@@ -117,7 +115,7 @@ For Apache, you can do the following to enable URL rewriting:
 
 For nginx and fast-cgi, you can the following snippet as a start:
 
-```
+```nginx
 server {
     listen   80;
     server_name example.com;
@@ -219,7 +217,7 @@ virtual host.
 
 With apache this would look like:
 
-```
+```apache
 <VirtualHost *:80>
   php_admin_value auto_prepend_file "/Users/markstory/Sites/xhgui/external/header.php"
   DocumentRoot "/Users/markstory/Sites/awesome-thing/app/webroot/"
@@ -228,7 +226,7 @@ With apache this would look like:
 ```
 With Nginx in fastcgi mode you could use:
 
-```
+```nginx
 server {
   listen 80;
   server_name site.localhost;
@@ -255,7 +253,7 @@ require '/path/to/xhgui/external/header.php';
 
 You can alternatively use the `-d` flag when running php:
 
-```
+```bash
 php -d auto_prepend_file=/path/to/xhgui/external/header.php do_work.php
 ```
 
@@ -279,7 +277,7 @@ during the import.
 
 The following demonstrate the use of `external/import.php`:
 
-```
+```bash
 php external/import.php -f /path/to/file
 ```
 
