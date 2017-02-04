@@ -30,11 +30,16 @@ return array(
     // Profile 1 in 100 requests.
     // You can return true to profile every request.
     'profiler.enable' => function() {
-        return rand(1, 100) === 42;
+        if(isset($_GET['_profile']) && !empty($_GET['_profile'])){
+            return true;
+        }
+        return rand(1, 10) === 1;
+
     },
 
     'profiler.simple_url' => function($url) {
         return preg_replace('/\=\d+/', '', $url);
-    }
+    },
+    'auth_key' => 'TGo9A7CVJsWIKTro'
 
 );
