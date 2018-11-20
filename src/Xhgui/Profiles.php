@@ -33,6 +33,11 @@ class Xhgui_Profiles
         return $this->_collection->find($conditions, $fields);
     }
 
+    public function allDomains()
+    {
+        return $this->_collection->distinct('meta.SERVER.HTTP_HOST');
+    }
+
     /**
      * Get a single profile run by id.
      *

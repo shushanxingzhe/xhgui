@@ -10,12 +10,7 @@
 
 {% if runs|length or has_search %}
 <div class="searchbar clearfix">
-    <a href="#" class="pull-right btn btn-small search-expand" title="Show search form">
-        <i class="icon-search"></i> Search
-    </a>
-
-    <form action="{{ url('home') }}" method="get" class="row hide search-form form-inline">
-        <a href="#" class="search-collapse close" title="Hide search form">&times;</a>
+    <form action="{{ url('home') }}" method="get" class="row search-form form-inline">
         <div class="control-group span4">
             <label class="control-label" for="start_date">Date range</label>
             <div class="controls">
@@ -23,13 +18,18 @@
                 <input type="text" id="date_end" data-date-format="yyyy-mm-dd" name="date_end" class="datepicker span2" value="{{ search.date_end }}">
             </div>
         </div>
-        <div class="control-group span4">
+        <div class="control-group span3">
             <label class="control-label" for="url">Domain</label>
             <div class="controls">
-                <input type="text" id="domain" name="domain" value="{{ search.domain }}">
+                <select name="domain">
+                    <option></option>
+                    {% for domain in allDomains %}
+                    <option value="{{ domain }}" {% if domain == search.domain %} selected {% endif %}>{{ domain }}</option>
+                    {% endfor %}
+                </select>
             </div>
         </div>
-        <div class="control-group span4">
+        <div class="control-group span3">
             <label class="control-label" for="url">URL</label>
             <div class="controls">
                 <input type="text" id="url" name="url" value="{{ search.url }}">
