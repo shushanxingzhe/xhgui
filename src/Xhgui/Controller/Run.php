@@ -14,7 +14,7 @@ class Xhgui_Controller_Run extends Xhgui_Controller
         $request = $this->_app->request();
 
         $search = array();
-        $keys = array('date_start', 'date_end', 'url');
+        $keys = array('date_start', 'date_end', 'url', 'domain');
         foreach ($keys as $key) {
             if ($request->get($key)) {
                 $search[$key] = $request->get($key);

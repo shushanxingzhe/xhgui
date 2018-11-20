@@ -10,6 +10,7 @@
                 <th>
                   Method
                 </th>
+                <th>Domain</th>
                 <th>URL</th>
                 <th>
                     {{ helpers.sort_link('Time', base_url, 'time', paging, search) }}
@@ -50,6 +51,9 @@
               <a href="{{ url('run.view', {'id': result.id|trim }) }}">
                 {{result.meta('SERVER.REQUEST_METHOD')}}
               </a>
+            </td>
+            <td>
+                {{result.meta.SERVER.HTTP_HOST }}
             </td>
             <td>
                 {% set addr = result.meta.url %}

@@ -169,7 +169,7 @@ class Xhgui_Profiles
                 )
             ),
             array('$sort' => array('_id' => 1)),
-        ));
+        ), ['cursor'=> ['batchSize'=>10]]);
 
         if (empty($results['result'])) {
             return array();
