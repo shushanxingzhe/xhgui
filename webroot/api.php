@@ -1,5 +1,4 @@
 <?php
-
 /* Things you may want to tweak in here:
  *  - xhprof_enable() uses a few constants.
  *  - The values passed to rand() determine the the odds of any particular run being profiled.
@@ -50,6 +49,19 @@ try {
     $config = Xhgui_Config::all();
     $config += array('db.options' => array());
     $saver = Xhgui_Saver::factory($config);
+    foreach($send_data['meta']['SERVER'] as $key => $value) {
+        if(strpos($key, '.') !== false){
+            unset($send_data['meta']['SERVER'][$key]);
+            $send_data['meta']['SERVER'][strtr($key, ['.' => '_'])] = $value;
+        }
+    }
+    foreach($send_data['meta']['env'] as $key => $value) {
+        if(strpos($key, '.') !== false){
+            unset($send_data['meta']['env'][$key]);
+            $send_data['meta']['env'][strtr($key, ['.' => '_'])] = $value;
+        }
+    }
+
     $saver->save($send_data);
 } catch (Exception $e) {
     error_log('xhgui - ' . $e->getMessage());
