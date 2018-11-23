@@ -18,13 +18,20 @@
                 <input type="text" id="date_end" data-date-format="yyyy-mm-dd" name="date_end" class="datepicker span2" value="{{ search.date_end }}">
             </div>
         </div>
-        <div class="control-group span3">
+        <div class="control-group span5">
             <label class="control-label" for="url">Domain</label>
             <div class="controls">
                 <select name="domain">
                     <option></option>
                     {% for domain in allDomains %}
                     <option value="{{ domain }}" {% if domain == search.domain %} selected {% endif %}>{{ domain }}</option>
+                    {% endfor %}
+                </select>
+                <label class="control-label" for="url">UA</label>
+                <select name="ua">
+                    <option></option>
+                    {% for ua in allUAs %}
+                    <option value="{{ ua }}" {% if ua == search.ua %} selected {% endif %}>{{ ua }}</option>
                     {% endfor %}
                 </select>
             </div>

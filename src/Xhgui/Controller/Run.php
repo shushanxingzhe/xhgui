@@ -14,7 +14,7 @@ class Xhgui_Controller_Run extends Xhgui_Controller
         $request = $this->_app->request();
 
         $search = array();
-        $keys = array('date_start', 'date_end', 'url', 'domain');
+        $keys = array('date_start', 'date_end', 'url', 'domain', 'ua');
         foreach ($keys as $key) {
             if ($request->get($key)) {
                 $search[$key] = $request->get($key);
@@ -23,6 +23,7 @@ class Xhgui_Controller_Run extends Xhgui_Controller
         $sort = $request->get('sort');
 
         $allDomains = $this->_profiles->allDomains();
+        $allUAs = $this->_profiles->allUA();
         $result = $this->_profiles->getAll(array(
             'sort' => $sort,
             'page' => $request->get('page'),
@@ -53,6 +54,7 @@ class Xhgui_Controller_Run extends Xhgui_Controller
         $this->set(array(
             'paging' => $paging,
             'allDomains' => $allDomains,
+            'allUAs' => $allUAs,
             'base_url' => 'home',
             'runs' => $result['results'],
             'date_format' => $this->_app->config('date.format'),

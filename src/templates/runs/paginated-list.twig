@@ -8,31 +8,33 @@
                 <th>&nbsp;</th>
                 {% endif %}
                 <th>
-                  Method
+                  方法
                 </th>
-                <th>Domain</th>
+                <th>域名</th>
+                <th>UA</th>
                 <th>URL</th>
+                <!--th>服务治理</th-->
                 <th>
-                    {{ helpers.sort_link('Time', base_url, 'time', paging, search) }}
+                    {{ helpers.sort_link('请求时间', base_url, 'time', paging, search) }}
                 </th>
                 <th class="right">
                     <span class="tip" title="Wall time">
-                        {{ helpers.sort_link('wt', base_url, 'wt', paging, search) }}
+                        {{ helpers.sort_link('耗时', base_url, 'wt', paging, search) }}
                     </span>
                 </th>
                 <th class="right">
                     <span class="tip" title="CPU time">
-                        {{ helpers.sort_link('cpu', base_url, 'cpu', paging, search) }}
+                        {{ helpers.sort_link('CPU', base_url, 'cpu', paging, search) }}
                     </span>
                 </th>
                 <th class="right">
                     <span class="tip" title="Memory Usage">
-                        {{ helpers.sort_link('mu', base_url, 'mu', paging, search) }}
+                        {{ helpers.sort_link('内存', base_url, 'mu', paging, search) }}
                     </span>
                 </th>
                 <th class="right">
                     <span class="tip" title="Peak Memory">
-                        {{ helpers.sort_link('pmu', base_url, 'pmu', paging, search) }}
+                        {{ helpers.sort_link('内存峰值', base_url, 'pmu', paging, search) }}
                     </span>
                 </th>
             </tr>
@@ -48,26 +50,29 @@
             </td>
             {% endif %}
             <td>
-              <a href="{{ url('run.view', {'id': result.id|trim }) }}">
+              <a href="{{ url('url.view', {'url': result.meta.simple_url }) }}">
                 {{result.meta('SERVER.REQUEST_METHOD')}}
               </a>
             </td>
             <td>
                 {{result.meta.SERVER.HTTP_HOST }}
             </td>
-            <td>
-                {% set addr = result.meta.url %}
-                {{ helpers.tip_link(
-                    addr,
-                    50,
-                    'url.view',
-                    {'url': result.meta.simple_url}
-                ) }}
+            <td style="max-width: 100px;">
+                {{result.meta.SERVER.HTTP_USER_AGENT }}
             </td>
             <td>
-              <a href="{{ url('run.view', {'id': result.id|trim }) }}">
+                {% set addr = result.meta.url %}
+                {{ helpers.tip_link(addr,50,'run.view', {'id': result.id|trim }) }}
+            </td>
+            <!--td>
+                {% if result.meta.SERVER.trace_id  %}
+                <a href="http://brainkeeper.gw-ec.com/link-tracking/trace/traceInquire?traceId={{ result.meta.SERVER.trace_id }}">
+                    {{ result.meta.SERVER.trace_id }}
+                </a>
+                {% endif %}
+            </td-->
+            <td>
                 {{ result.date|date(date_format) }}
-              </a>
             </td>
             <td class="right">{{ result.get('main()', 'wt') |as_time }}</td>
             <td class="right">{{ result.get('main()', 'cpu') |as_time }}</td>

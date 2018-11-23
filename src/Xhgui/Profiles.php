@@ -38,6 +38,11 @@ class Xhgui_Profiles
         return $this->_collection->distinct('meta.SERVER.HTTP_HOST');
     }
 
+    public function allUA()
+    {
+        return $this->_collection->distinct('meta.SERVER.HTTP_USER_AGENT');
+    }
+
     /**
      * Get a single profile run by id.
      *

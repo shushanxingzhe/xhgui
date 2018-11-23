@@ -74,6 +74,10 @@ class Xhgui_Db_Mapper
             $conditions['meta.SERVER.HTTP_HOST'] = (string)$search['domain'];
         }
 
+        if (isset($search['ua'])) {
+            $conditions['meta.SERVER.HTTP_USER_AGENT'] = (string)$search['ua'];
+        }
+
         if ($hasLimit && $search['limit'][0] == "P") {
             $date = new DateTime();
             try {
