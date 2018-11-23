@@ -49,6 +49,12 @@ try {
     $config = Xhgui_Config::all();
     $config += array('db.options' => array());
     $saver = Xhgui_Saver::factory($config);
+    foreach($send_data['profile'] as $key => $value) {
+        if(strpos($key, '.') !== false){
+            unset($send_data['profile'][$key]);
+            $send_data['profile'][strtr($key, ['.' => '_'])] = $value;
+        }
+    }
     foreach($send_data['meta']['SERVER'] as $key => $value) {
         if(strpos($key, '.') !== false){
             unset($send_data['meta']['SERVER'][$key]);
