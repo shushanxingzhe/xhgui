@@ -4619,8 +4619,16 @@ d3 = function() {
           v += d.value;
         }
         if (sort) c.sort(sort);
-        if (value) node.value = v;
+        if (value){
+            if (typeof node.realVal == 'undefined'){
+                node.realVal = node.value;
+            }
+            node.value = v;
+        }
       } else if (value) {
+          if (typeof node.realVal == 'undefined'){
+              node.realVal = node.value;
+          }
         node.value = +value.call(hierarchy, node, depth) || 0;
       }
       return node;
