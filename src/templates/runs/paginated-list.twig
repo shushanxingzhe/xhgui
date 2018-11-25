@@ -50,7 +50,7 @@
             </td>
             {% endif %}
             <td>
-              <a href="{{ url('url.view', {'url': result.meta.simple_url }) }}">
+              <a href="{{ url('url.view', {'url': result.meta.url }) }}">
                 {{result.meta('SERVER.REQUEST_METHOD')}}
               </a>
             </td>

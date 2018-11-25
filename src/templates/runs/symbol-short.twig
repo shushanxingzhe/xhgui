@@ -6,39 +6,39 @@
     <table class="table table-hover">
         <tbody>
             <tr>
-                <th>Call Count</th>
+                <th>调用次数</th>
                 <td>{{ current.ct }}</td>
             </tr>
             <tr>
-                <th>Self Wall Time</th>
+                <th>自身耗时</th>
                 <td>{{ current.ewt|as_time }}</td>
             </tr>
             <tr>
-                <th>Self CPU</th>
+                <th>自身耗CPU</th>
                 <td>{{ current.ecpu|as_time }}</td>
             </tr>
             <tr>
-                <th>Self Memory Usage</th>
+                <th>自身耗内存</th>
                 <td>{{ current.emu|as_bytes }}</td>
             </tr>
             <tr>
-                <th>Self Peak Memory Usage</th>
+                <th>自身耗内存峰值</th>
                 <td>{{ current.epmu|as_bytes }}</td>
             </tr>
             <tr>
-                <th>Inclusive Wall Time</th>
+                <th>含子调用耗时</th>
                 <td>{{ helpers.time_and_percent('wt', current, main) }}</td>
             </tr>
             <tr>
-                <th>Inclusive CPU</th>
+                <th>含子调用耗CPU</th>
                 <td>{{ helpers.time_and_percent('cpu', current, main) }}</td>
             </tr>
             <tr>
-                <th>Inclusive Memory Usage</th>
+                <th>含子调用耗时内存</th>
                 <td>{{ helpers.time_and_percent('mu', current, main) }}</td>
             </tr>
             <tr>
-                <th>Inclusive Peak Memory Usage</th>
+                <th>含子调用耗时峰值</th>
                 <td>{{ helpers.time_and_percent('pmu', current, main) }}</td>
             </tr>
         </tbody>
@@ -48,11 +48,11 @@
     <table class="table table-hover table-sort">
         <thead>
             <tr>
-                <th>Function</th>
-                <th>Call Count</th>
+                <th>函数</th>
+                <th>调用次数</th>
 
-                <th>Self Wall Time</th>
-                <th>Self Memory Usage</th>
+                <th>自身耗时</th>
+                <th>自身耗内存</th>
             </tr>
         </thead>
         <tbody>
@@ -83,11 +83,11 @@
     <table class="table table-hover table-sort">
         <thead>
             <tr>
-                <th>Function</th>
-                <th>Call Count</th>
+                <th>函数</th>
+                <th>函数</th>
 
-                <th>Self Wall Time</th>
-                <th>Self Memory Usage</th>
+                <th>自身耗时</th>
+                <th>自身耗CPU</th>
             </tr>
         </thead>
         <tbody>
